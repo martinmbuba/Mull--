@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS profiles (
     email TEXT NOT NULL,
     full_name TEXT,
     balance DECIMAL(15, 2) DEFAULT 0.00,
+    avatar_url TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -21,6 +22,12 @@ CREATE TABLE IF NOT EXISTS transactions (
     description TEXT,
     balance_after DECIMAL(15, 2),
     status TEXT DEFAULT 'completed',
+    withdrawal_method TEXT,
+    phone_country_code TEXT,
+    phone_number TEXT,
+    bank_id TEXT,
+    bank_name TEXT,
+    account_number TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
@@ -60,7 +67,7 @@ BEGIN
         NEW.id,
         NEW.email,
         NEW.raw_user_meta_data->>'full_name',
-        10000.00  -- Initial balance for demo
+        1000000.00  -- Initial balance for demo ($1M)
     );
     RETURN NEW;
 END;
@@ -84,4 +91,16 @@ CREATE TRIGGER on_auth_user_created
 
 -- Check existing policies
 -- SELECT * FROM pg_policies WHERE tablename IN ('profiles', 'transactions');
+
+-- ============================================================================
+-- ALTER TABLE (If tables already exist and you need to add columns)
+-- ============================================================================
+
+-- Add withdrawal tracking columns to existing transactions table
+-- ALTER TABLE transactions ADD COLUMN IF NOT EXISTS withdrawal_method TEXT;
+-- ALTER TABLE transactions ADD COLUMN IF NOT EXISTS phone_country_code TEXT;
+-- ALTER TABLE transactions ADD COLUMN IF NOT EXISTS phone_number TEXT;
+-- ALTER TABLE transactions ADD COLUMN IF NOT EXISTS bank_id TEXT;
+-- ALTER TABLE transactions ADD COLUMN IF NOT EXISTS bank_name TEXT;
+-- ALTER TABLE transactions ADD COLUMN IF NOT EXISTS account_number TEXT;
 

@@ -1,0 +1,114 @@
+/* Loading Spinner Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+}
+
+.spinner-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid transparent;
+}
+
+.spinner-small .spinner-ring {
+  width: 24px;
+  height: 24px;
+  border-top-color: rgba(0, 212, 255, 0.8);
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-small .spinner-ring:nth-child(2) {
+  width: 18px;
+  height: 18px;
+  border-top-color: rgba(0, 255, 136, 0.6);
+  animation-duration: 0.6s;
+  animation-direction: reverse;
+}
+
+.spinner-small .spinner-ring:nth-child(3) {
+  width: 12px;
+  height: 12px;
+  border-top-color: rgba(255, 255, 255, 0.4);
+  animation-duration: 0.4s;
+}
+
+.spinner-medium .spinner-ring {
+  width: 40px;
+  height: 40px;
+  border-top-color: rgba(0, 212, 255, 0.8);
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-medium .spinner-ring:nth-child(2) {
+  width: 30px;
+  height: 30px;
+  border-top-color: rgba(0, 255, 136, 0.6);
+  animation-duration: 0.6s;
+  animation-direction: reverse;
+}
+
+.spinner-medium .spinner-ring:nth-child(3) {
+  width: 20px;
+  height: 20px;
+  border-top-color: rgba(255, 255, 255, 0.4);
+  animation-duration: 0.4s;
+}
+
+.spinner-large .spinner-ring {
+  width: 60px;
+  height: 60px;
+  border-top-color: rgba(0, 212, 255, 0.8);
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-large .spinner-ring:nth-child(2) {
+  width: 45px;
+  height: 45px;
+  border-top-color: rgba(0, 255, 136, 0.6);
+  animation-duration: 0.6s;
+  animation-direction: reverse;
+}
+
+.spinner-large .spinner-ring:nth-child(3) {
+  width: 30px;
+  height: 30px;
+  border-top-color: rgba(255, 255, 255, 0.4);
+  animation-duration: 0.4s;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-message {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  margin: 0;
+}
+
+/* Dashboard inline loading */
+.dashboard .loading-spinner {
+  padding: 40px;
+}
+
+.dashboard .loading-spinner .spinner-ring {
+  border-top-color: rgba(0, 212, 255, 0.8);
+}
+
