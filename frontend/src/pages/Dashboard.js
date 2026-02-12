@@ -222,8 +222,8 @@ const Dashboard = () => {
         if (result.error) {
           setError(result.error);
         } else {
-          const bankDisplay = confirmMethod.bank?.name || 'Bank';
-          setSuccess(`Successfully deposited $${confirmAmount.toFixed(2)} from ${bankDisplay} (${confirmMethod.accountNumber})`);
+          const bankName = confirmMethod.bank?.name || 'Bank';
+          setSuccess(`Successfully deposited $${confirmAmount.toFixed(2)} from ${bankName} (${confirmMethod.accountNumber})`);
           setBalance(result.new_balance);
           fetchData();
           setDepositAmount('');

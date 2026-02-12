@@ -55,7 +55,7 @@ const Profile = () => {
     const token = localStorage.getItem('token');
     
     try {
-      const result = await api.updateProfile(token, fullName);
+      await api.updateProfile(token, fullName);
       setSuccess('Profile updated successfully!');
       setEditing(false);
       fetchProfile();
@@ -105,7 +105,7 @@ const Profile = () => {
       const fileName = `${userId}/avatar_${Date.now()}.${fileExt}`;
       
       // Upload to Supabase Storage
-      const { data, error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from('avatars')
         .upload(fileName, file, {
           cacheControl: '3600',
